@@ -1,0 +1,9 @@
+<form (ngSubmit)="onSubmit(entryForm)" #entryForm="ngForm">
+  <label for="title">Title:</label>
+  <input type="text" name="title" [(ngModel)]="journal.title" required>
+
+  <label for="content">Content:</label>
+  <input type="text" name="content" [(ngModel)]="journal.content" required>
+
+  <button type="submit" [disabled]="!entryForm.valid">Create entry</button>
+</form>

@@ -32,4 +32,8 @@ export class JournalService {
     return Observable.throw(error.json());
   }
 
+  post(title: string, content: string): void {
+    this.http.post(JournalService.JOURNAL_API, JournalService.defaultOptions)
+  }
+
 }
