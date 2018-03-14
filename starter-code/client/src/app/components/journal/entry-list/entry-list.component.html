@@ -1,7 +1,7 @@
 <h1>Journal List</h1>
 <div>
   <div *ngFor="let journal of journals" class="journal">
-    <h4>{{ journal.title }}</h4>
+    <h4><a [routerLink]="['/journals', journal._id]">{{ journal.title }}</a></h4>
     <p>{{ journal.date }}</p>
   </div>
 </div>
