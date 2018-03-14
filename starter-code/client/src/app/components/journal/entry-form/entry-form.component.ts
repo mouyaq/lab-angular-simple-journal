@@ -1,3 +1,4 @@
+import { JournalService } from './../../../shared/services/journal.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Journal } from '../../../shared/models/journal.model';
@@ -10,10 +11,18 @@ import { Journal } from '../../../shared/models/journal.model';
 export class EntryFormComponent {
 
   journal: Journal = new Journal();
-  @Output() onCreate: EventEmitter<Journal> = new EventEmitter<Journal>();
+  @Output() onCreate: EventEmitter<Journal> = new EventEmitter<Journal>()
+  
+  constructor(private journalService: JournalService) {}
 
   onSubmit(form: NgForm) {
-    this.onCreate.emit(this.journal);
+    this.journalService
+    .post(this.journal)
+    .subscribe(journal => {
+      this.onCreate.emit(journal);
+      this.journal = new Journal();
+      form.reset();
+    });
   }
 
 }
