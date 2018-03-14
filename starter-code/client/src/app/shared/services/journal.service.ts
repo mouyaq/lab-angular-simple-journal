@@ -19,6 +19,12 @@ export class JournalService {
       .catch(error => this.handleError(error));
   }
 
+  get(id: string): Observable<Journal> {
+    return this.http.get(`${JournalService.JOURNAL_API}/${id}`, JournalService.defaultOptions)
+      .map((res: Response) => res.json())
+      .catch(error => this.handleError(error));
+  }
+
   private handleError(error: Response): Observable<any> {
     if (!environment.production) {
       console.error(`Journal Service error: ${error.json()}`);
